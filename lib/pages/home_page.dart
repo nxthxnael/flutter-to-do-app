@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/utils/todo_list.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -6,6 +7,7 @@ class HomePage extends StatelessWidget {
   final List toDoList = [
     ['Send Invoice', false],
     ['Integrate Daraja API', false],
+    ['Find Sam', false],
   ];
 
   @override
@@ -21,25 +23,7 @@ class HomePage extends StatelessWidget {
       body: ListView.builder(
         itemCount: toDoList.length,
         itemBuilder: (BuildContext context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-              left: 20,
-              right: 20,
-              bottom: 0,
-            ),
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: const Color(0xFF3E3E3E),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Text(
-                toDoList[index][0],
-                style: const TextStyle(color: Colors.white, fontSize: 18),
-              ),
-            ),
-          );
+          return TodoList(taskName: toDoList[index][0]);
         },
       ),
     );

@@ -24,6 +24,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void deleteTask(int index) {
+    setState(() {
+      toDoList.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,41 +52,51 @@ class _HomePageState extends State<HomePage> {
                 toDoList[index][1] = !toDoList[index][1];
               });
             },
+            deleteFunction: (value) => deleteTask,
           );
         },
       ),
-      floatingActionButton: Row(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: TextField(
-                controller: _controller,
-                style: const TextStyle(color: Colors.black),
-                cursorColor: Colors.deepPurple,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey[400],
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.black, width: 2),
-                    borderRadius: BorderRadius.circular(15),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Row(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextField(
+                  controller: _controller,
+                  style: const TextStyle(color: Colors.black),
+                  cursorColor: Colors.deepPurple,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey[400],
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    hintText: 'Add a new task',
+                    hintStyle: TextStyle(color: Colors.black),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.black, width: 2),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  hintText: 'Add a new task',
-                  hintStyle: TextStyle(color: Colors.black),
                 ),
               ),
             ),
-          ),
-          FloatingActionButton(
-            onPressed: saveNewTask,
-            backgroundColor: Colors.black,
-            child: const Icon(Icons.add, color: Colors.white),
-          ),
-        ],
+            FloatingActionButton(
+              onPressed: saveNewTask,
+              backgroundColor: Colors.black,
+              child: const Icon(Icons.add, color: Colors.white),
+            ),
+          ],
+        ),
       ),
     );
   }

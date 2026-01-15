@@ -7,7 +7,7 @@ class TodoList extends StatelessWidget {
     required this.taskName,
     required this.taskCompleted,
     required this.onChanged,
-    this.deleteFunction,
+    required this.deleteFunction,
   });
 
   final String taskName;
